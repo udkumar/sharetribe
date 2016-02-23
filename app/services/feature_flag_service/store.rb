@@ -11,6 +11,7 @@ module FeatureFlagService::Store
       :location_search,
       :export_transactions_as_csv,
       :new_search,
+      :new_login
     ].to_set
 
     def initialize(additional_flags:)
