@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160229114242) do
+ActiveRecord::Schema.define(version: 20160306132104) do
 
   create_table "auth_tokens", force: :cascade do |t|
     t.string   "token",            limit: 255
@@ -891,6 +891,8 @@ ActiveRecord::Schema.define(version: 20160229114242) do
     t.boolean  "is_organization"
     t.string   "organization_name",                  limit: 255
     t.boolean  "deleted",                                          default: false
+    t.string   "company",                            limit: 255
+    t.integer  "subscription_plan_id",               limit: 4
   end
 
   add_index "people", ["authentication_token"], name: "index_people_on_authentication_token", using: :btree
@@ -930,6 +932,33 @@ ActiveRecord::Schema.define(version: 20160229114242) do
     t.datetime "created_at",                    null: false
     t.datetime "updated_at",                    null: false
     t.string   "country_code",      limit: 8
+  end
+
+  create_table "subscription_plan_details", force: :cascade do |t|
+    t.string   "amount_of_ads",                         limit: 255,                 null: false
+    t.boolean  "company_profile",                                   default: false, null: false
+    t.boolean  "video_tutorials",                                   default: false, null: false
+    t.boolean  "verified_account",                                  default: false, null: false
+    t.boolean  "review_status",                                     default: false, null: false
+    t.boolean  "ad_free_use",                                       default: false, null: false
+    t.boolean  "yearly_national_subscriptions_event",               default: false, null: false
+    t.boolean  "access_exclusive_webinars_topspeakers",             default: false, null: false
+    t.boolean  "customized_profile",                                default: false, null: false
+    t.string   "rotating_ads_on_homepage",              limit: 255,                 null: false
+    t.boolean  "one_Office_365_account",                            default: false, null: false
+    t.integer  "subscription_plan_id",                  limit: 4,                   null: false
+    t.datetime "created_at",                                                        null: false
+    t.datetime "updated_at",                                                        null: false
+  end
+
+  create_table "subscription_plans", force: :cascade do |t|
+    t.string   "name",             limit: 255,                null: false
+    t.decimal  "price",                        precision: 10, null: false
+    t.string   "currency",         limit: 255,                null: false
+    t.decimal  "commission",                   precision: 10, null: false
+    t.string   "plan_description", limit: 255,                null: false
+    t.datetime "created_at",                                  null: false
+    t.datetime "updated_at",                                  null: false
   end
 
   create_table "testimonials", force: :cascade do |t|

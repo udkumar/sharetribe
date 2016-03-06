@@ -41,6 +41,8 @@
 #  is_organization                    :boolean
 #  organization_name                  :string(255)
 #  deleted                            :boolean          default(FALSE)
+#  company                            :string(255)
+#  subscription_plan_id               :integer
 #
 # Indexes
 #
