@@ -73,3 +73,9 @@
 //= require transaction
 //= require listing_form
 //= require_self
+
+$(function () {
+  $(".Preemium").click(function () {
+    $("#Preemium").modal();
+  });
+});

@@ -1,5 +1,6 @@
 - content_for :javascript do
   initialize_signup_form("#{I18n.locale}","#{t("people.new.username_is_in_use")}","#{t("people.new.username_is_invalid")}","#{email_not_accepted_message}", "#{t("people.new.invalid_invitation_code")}", #{@current_community.real_name_required?}, #{@current_community.join_with_invite_only?} );
+
 - content_for :title_header do
   %h1= t('.sign_up')
 
@@ -67,7 +68,19 @@
     = form.password_field :password2, :class => :text_field, :maxlength => "255"
 
     -# Subscription
-
+    .row
+      %label.radio-inline.subscription-plan
+        %input.Preemium{:name => "optradio", :type => "radio"}
+          Preemium
+      %label.radio-inline.subscription-plan
+        %input#PremiumBasic{:name => "optradio", :type => "radio"}
+          Premium Basic
+      %label.radio-inline.subscription-plan
+        %input#PremiumPro{:name => "optradio", :type => "radio"}
+          Premium Pro
+      %label.radio-inline.subscription-plan
+        %input#PremiumVIP{:name => "optradio", :type => "radio"}
+          Premium VIP
     -# Terms
     .outer-checkbox-container
       .checkbox-container
@@ -81,3 +94,64 @@
     = button_tag t('.create_new_account')
 
 = render :partial => "help_texts", :collection => ["terms", "help_invitation_code"], :as => :field
+
+
+/ #Preemium.modal.fade{:role => "dialog"}
+/   .modal-dialog
+/     .modal-content
+/       .modal-body{:style => "padding:40px 50px;"}
+/         .container
+/           .row.pricing
+/             .col-md-3
+/               .well
+/                 %h3
+/                   %b Plan 1
+/                 %hr
+/                   %p 1 GB Datatransfer
+/                   %hr
+/                     %p 1 GB Storage
+/                     %hr
+/                       %p
+/                         %b € 2,99 /PM
+/                       %hr
+/                         %a.btn.btn-default.btn-block{:href => "#"} Sign Up
+/             .col-md-3
+/               .well
+/                 %h3
+/                   %b Plan 2
+/                 %hr
+/                   %p 2 GB Datatransfer
+/                   %hr
+/                     %p 2 GB Storage
+/                     %hr
+/                       %p
+/                         %b € 3,99 /PM
+/                       %hr
+/                         %a.btn.btn-primary.btn-block{:href => "#"} Sign Up
+/             .col-md-3
+/               .well
+/                 %h3
+/                   %b Plan 3
+/                 %hr
+/                   %p 3 GB Datatransfer
+/                   %hr
+/                     %p 3 GB Storage
+/                     %hr
+/                       %p
+/                         %b € 4,99 /PM
+/                       %hr
+/                         %a.btn.btn-info.btn-block{:href => "#"} Sign Up
+/             .col-md-3
+/               .well
+/                 %h3
+/                   %b Plan 4
+/                 %hr
+/                   %p 4 GB Datatransfer
+/                   %hr
+/                     %p 4 GB Storage
+/                     %hr
+/                       %p
+/                         %b € 5,99 /PM
+/                       %hr
+/                         %a.btn.btn-success.btn-block{:href => "#"} Sign Up
+

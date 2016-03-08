@@ -43,6 +43,7 @@
 #  deleted                            :boolean          default(FALSE)
 #  company                            :string(255)
 #  subscription_plan_id               :integer
+#  is_paid                            :boolean
 #
 # Indexes
 #
