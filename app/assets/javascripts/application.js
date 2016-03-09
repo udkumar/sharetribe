@@ -76,6 +76,6 @@
 
 $(function () {
   $(".Preemium").click(function () {
-    $("#Preemium").modal();
+    $("#pricePlans").lightbox_me({ centered: true, zIndex: 1000000 });
   });
 });

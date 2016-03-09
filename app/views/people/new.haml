@@ -1,6 +1,8 @@
 - content_for :javascript do
   initialize_signup_form("#{I18n.locale}","#{t("people.new.username_is_in_use")}","#{t("people.new.username_is_invalid")}","#{email_not_accepted_message}", "#{t("people.new.invalid_invitation_code")}", #{@current_community.real_name_required?}, #{@current_community.join_with_invite_only?} );
 
+= stylesheet_link_tag "pricing-style.css"
+
 - content_for :title_header do
   %h1= t('.sign_up')
 
@@ -94,64 +96,121 @@
     = button_tag t('.create_new_account')
 
 = render :partial => "help_texts", :collection => ["terms", "help_invitation_code"], :as => :field
+#terms.lightbox
+  .lightbox-content
+    %a#close_x.close.lightbox-x{:href => "#"}
+      .ss-delete.icon-fix
+  #terms_page_content{"data-mercury" => "full"}
 
-
-/ #Preemium.modal.fade{:role => "dialog"}
-/   .modal-dialog
-/     .modal-content
-/       .modal-body{:style => "padding:40px 50px;"}
-/         .container
-/           .row.pricing
-/             .col-md-3
-/               .well
-/                 %h3
-/                   %b Plan 1
-/                 %hr
-/                   %p 1 GB Datatransfer
-/                   %hr
-/                     %p 1 GB Storage
-/                     %hr
-/                       %p
-/                         %b € 2,99 /PM
-/                       %hr
-/                         %a.btn.btn-default.btn-block{:href => "#"} Sign Up
-/             .col-md-3
-/               .well
-/                 %h3
-/                   %b Plan 2
-/                 %hr
-/                   %p 2 GB Datatransfer
-/                   %hr
-/                     %p 2 GB Storage
-/                     %hr
-/                       %p
-/                         %b € 3,99 /PM
-/                       %hr
-/                         %a.btn.btn-primary.btn-block{:href => "#"} Sign Up
-/             .col-md-3
-/               .well
-/                 %h3
-/                   %b Plan 3
-/                 %hr
-/                   %p 3 GB Datatransfer
-/                   %hr
-/                     %p 3 GB Storage
-/                     %hr
-/                       %p
-/                         %b € 4,99 /PM
-/                       %hr
-/                         %a.btn.btn-info.btn-block{:href => "#"} Sign Up
-/             .col-md-3
-/               .well
-/                 %h3
-/                   %b Plan 4
-/                 %hr
-/                   %p 4 GB Datatransfer
-/                   %hr
-/                     %p 4 GB Storage
-/                     %hr
-/                       %p
-/                         %b € 5,99 /PM
-/                       %hr
-/                         %a.btn.btn-success.btn-block{:href => "#"} Sign Up
-
+    %section#pricePlans
+      %ul#plans
+        %li.plan
+          %ul.planContainer
+            %li.title
+              %h2 Plan 1
+            %li.price
+              %p
+                $10/
+                %span month
+            %li
+              %ul.options
+                %li
+                  2x
+                  %span option 1
+                %li
+                  Free
+                  %span option 2
+                %li
+                  Unlimited
+                  %span option 3
+                %li
+                  Unlimited
+                  %span option 4
+                %li
+                  1x
+                  %span option 5
+            %li.button
+              %a{:href => "#"} Purchase
+        %li.plan
+          %ul.planContainer
+            %li.title
+              %h2.bestPlanTitle Plan 2
+            %li.price
+              %p.bestPlanPrice $20/month
+            %li
+              %ul.options
+                %li
+                  2x
+                  %span option 1
+                %li
+                  Free
+                  %span option 2
+                %li
+                  Unlimited
+                  %span option 3
+                %li
+                  Unlimited
+                  %span option 4
+                %li
+                  1x
+                  %span option 5
+            %li.button
+              %a.bestPlanButton{:href => "#"} Purchase
+        %li.plan
+          %ul.planContainer
+            %li.title
+              %h2 Plan 3
+            %li.price
+              %p
+                $30/
+                %span month
+            %li
+              %ul.options
+                %li
+                  2x
+                  %span option 1
+                %li
+                  Free
+                  %span option 2
+                %li
+                  Unlimited
+                  %span option 3
+                %li
+                  Unlimited
+                  %span option 4
+                %li
+                  1x
+                  %span option 5
+            %li.button
+              %a{:href => "#"} Purchase
+        %li.plan
+          %ul.planContainer
+            %li.title
+              %h2 Plan 4
+            %li.price
+              %p
+                $40/
+                %span month
+            %li
+              %ul.options
+                %li
+                  2x
+                  %span option 1
+                %li
+                  Free
+                  %span option 2
+                %li
+                  Unlimited
+                  %span option 3
+                %li
+                  Unlimited
+                  %span option 4
+                %li
+                  1x
+                  %span option 5
+            %li.button
+              %a{:href => "#"} Purchase
+      / End ul#plans
+      #credits
+        by
+        %a{:href => "http://wegraphics.net/"} WeGraphics
