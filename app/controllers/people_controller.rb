@@ -71,6 +71,7 @@ class PeopleController < Devise::RegistrationsController
   end
 
   def new
+    @subscription_plan = SubscriptionPlan.all
     @selected_tribe_navi_tab = "members"
     redirect_to root if logged_in?
     session[:invitation_code] = params[:code] if params[:code]

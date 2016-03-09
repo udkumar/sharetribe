@@ -15,16 +15,16 @@
         //$(".js-modalbox").fadeIn(500);
         var modalBox = $(this).attr('data-modal-id');
         $('#'+modalBox).fadeIn($(this).data());
-      });  
-      
-      
+      });
+
+
     $(".js-modal-close, .modal-overlay").click(function() {
         $(".modal-box, .modal-overlay").fadeOut(500, function() {
             $(".modal-overlay").remove();
         });
-     
+
     });
-     
+
     $(window).resize(function() {
         $(".modal-box").css({
             top: ($(window).height() - $(".modal-box").outerHeight()) / 2,
@@ -33,7 +33,7 @@
     });
     $(window).resize();
   });
- 
+
 
 - content_for :title_header do
   %h1= t('.sign_up')
@@ -129,11 +129,101 @@
 
 = render :partial => "help_texts", :collection => ["terms", "help_invitation_code"], :as => :field
 %a.js-open-modal.btn{"data-modal-id" => "popup1", :href => "#"} Pop Up One
-#popup1.modal-box
+#popup1.modal-box{:style => "width:80% !important;margin-top:20%;"}
   %header
     %a.js-modal-close.close{:href => "#"} ×
-    %h3 Pop Up One
+    %h3 EURObizz B2B Marketplace Subscription
   .modal-body
-    %p Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut commodo at felis vitae facilisis. Cras volutpat fringilla nunc vitae hendrerit. Donec porta id augue quis sodales. Sed sit amet metus ornare, mattis sem at, dignissim arcu. Cras rhoncus ornare mollis. Ut tempor augue mi, sed luctus neque luctus non. Vestibulum mollis tristique blandit. Aenean condimentum in leo ac feugiat. Sed posuere, est at eleifend suscipit, erat ante pretium turpis, eget semper ex risus nec dolor. Etiam pellentesque nulla neque, ut ullamcorper purus facilisis at. Nam imperdiet arcu felis, eu placerat risus dapibus sit amet. Praesent at justo at lectus scelerisque mollis. Mauris molestie mattis tellus ut facilisis. Sed vel ligula ornare, posuere velit ornare, consectetur erat.
-  %footer
-    %a.btn.btn-small.js-modal-close{:href => "#"} Close
+    #pricing-table.clear
+      .plan
+        %h3
+          Subscription
+        %a.signup-header Plan Includes
+        %ul
+          %li
+            Amount of Ads
+          %li
+            Company Profile
+          %li
+            Video Tutorials
+          %li
+            Verified Account
+          %li
+            Review Status
+          %li
+            Ad Free Use
+          %li
+            Yearly National Subscriptions Event
+          %li
+            Access Exclusive Webinars Topspeakers
+          %li
+            Customized Profile
+          %li
+            Rotating Ads on Homepage
+          %li
+            One Office 365 Account
+      / - @subscription_plan.each do |plan|
+      .plan
+        %h3
+          Premium
+        %a.signup{:href => "#{}"} Select
+        %ul
+          %li
+            Disk Space
+          %li
+            Monthly Bandwidth
+          %li
+            Email Accounts
+          %li
+            subdomains
+      .plan
+        %h3
+          Premium Basic
+        %a.signup{:href => ""} Select
+        %ul
+          %li
+            %b 3GB
+            Disk Space
+          %li
+            %b 25GB
+            Monthly Bandwidth
+          %li
+            %b 5
+            Email Accounts
+          %li
+            %b Unlimited
+            subdomains
+      .plan
+        %h3
+          Premium Pro
+        %a.signup{:href => ""} Select
+        %ul
+          %li
+            %b 1GB
+            Disk Space
+          %li
+            %b 10GB
+            Monthly Bandwidth
+          %li
+            %b 2
+            Email Accounts
+          %li
+            %b Unlimited
+            subdomains
+      .plan
+        %h3
+          Premium VIP
+        %a.signup{:href => ""} Select
+        %ul
+          %li
+            %b 1GB
+            Disk Space
+          %li
+            %b 10GB
+            Monthly Bandwidth
+          %li
+            %b 2
+            Email Accounts
+          %li
+            %b Unlimited
+            subdomains
