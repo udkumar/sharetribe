@@ -1,7 +1,39 @@
 - content_for :javascript do
   initialize_signup_form("#{I18n.locale}","#{t("people.new.username_is_in_use")}","#{t("people.new.username_is_invalid")}","#{email_not_accepted_message}", "#{t("people.new.invalid_invitation_code")}", #{@current_community.real_name_required?}, #{@current_community.join_with_invite_only?} );
 
-= stylesheet_link_tag "pricing-style.css"
+= stylesheet_link_tag "popup.css"
+= javascript_include_tag "http://code.jquery.com/jquery-1.11.1.min.js"
+:javascript
+  $(function(){
+
+    var appendthis =  ("<div class='modal-overlay js-modal-close'></div>");
+
+      $('a[data-modal-id]').click(function(e) {
+        e.preventDefault();
+        $("body").append(appendthis);
+        $(".modal-overlay").fadeTo(500, 0.7);
+        //$(".js-modalbox").fadeIn(500);
+        var modalBox = $(this).attr('data-modal-id');
+        $('#'+modalBox).fadeIn($(this).data());
+      });  
+      
+      
+    $(".js-modal-close, .modal-overlay").click(function() {
+        $(".modal-box, .modal-overlay").fadeOut(500, function() {
+            $(".modal-overlay").remove();
+        });
+     
+    });
+     
+    $(window).resize(function() {
+        $(".modal-box").css({
+            top: ($(window).height() - $(".modal-box").outerHeight()) / 2,
+            left: ($(window).width() - $(".modal-box").outerWidth()) / 2
+        });
+    });
+    $(window).resize();
+  });
+ 
 
 - content_for :title_header do
   %h1= t('.sign_up')
@@ -96,121 +128,12 @@
     = button_tag t('.create_new_account')
 
 = render :partial => "help_texts", :collection => ["terms", "help_invitation_code"], :as => :field
-#terms.lightbox
-  .lightbox-content
-    %a#close_x.close.lightbox-x{:href => "#"}
-      .ss-delete.icon-fix
-  #terms_page_content{"data-mercury" => "full"}
-
-    %section#pricePlans
-      %ul#plans
-        %li.plan
-          %ul.planContainer
-            %li.title
-              %h2 Plan 1
-            %li.price
-              %p
-                $10/
-                %span month
-            %li
-              %ul.options
-                %li
-                  2x
-                  %span option 1
-                %li
-                  Free
-                  %span option 2
-                %li
-                  Unlimited
-                  %span option 3
-                %li
-                  Unlimited
-                  %span option 4
-                %li
-                  1x
-                  %span option 5
-            %li.button
-              %a{:href => "#"} Purchase
-        %li.plan
-          %ul.planContainer
-            %li.title
-              %h2.bestPlanTitle Plan 2
-            %li.price
-              %p.bestPlanPrice $20/month
-            %li
-              %ul.options
-                %li
-                  2x
-                  %span option 1
-                %li
-                  Free
-                  %span option 2
-                %li
-                  Unlimited
-                  %span option 3
-                %li
-                  Unlimited
-                  %span option 4
-                %li
-                  1x
-                  %span option 5
-            %li.button
-              %a.bestPlanButton{:href => "#"} Purchase
-        %li.plan
-          %ul.planContainer
-            %li.title
-              %h2 Plan 3
-            %li.price
-              %p
-                $30/
-                %span month
-            %li
-              %ul.options
-                %li
-                  2x
-                  %span option 1
-                %li
-                  Free
-                  %span option 2
-                %li
-                  Unlimited
-                  %span option 3
-                %li
-                  Unlimited
-                  %span option 4
-                %li
-                  1x
-                  %span option 5
-            %li.button
-              %a{:href => "#"} Purchase
-        %li.plan
-          %ul.planContainer
-            %li.title
-              %h2 Plan 4
-            %li.price
-              %p
-                $40/
-                %span month
-            %li
-              %ul.options
-                %li
-                  2x
-                  %span option 1
-                %li
-                  Free
-                  %span option 2
-                %li
-                  Unlimited
-                  %span option 3
-                %li
-                  Unlimited
-                  %span option 4
-                %li
-                  1x
-                  %span option 5
-            %li.button
-              %a{:href => "#"} Purchase
-      / End ul#plans
-      #credits
-        by
-        %a{:href => "http://wegraphics.net/"} WeGraphics
+%a.js-open-modal.btn{"data-modal-id" => "popup1", :href => "#"} Pop Up One
+#popup1.modal-box
+  %header
+    %a.js-modal-close.close{:href => "#"} ×
+    %h3 Pop Up One
+  .modal-body
+    %p Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut commodo at felis vitae facilisis. Cras volutpat fringilla nunc vitae hendrerit. Donec porta id augue quis sodales. Sed sit amet metus ornare, mattis sem at, dignissim arcu. Cras rhoncus ornare mollis. Ut tempor augue mi, sed luctus neque luctus non. Vestibulum mollis tristique blandit. Aenean condimentum in leo ac feugiat. Sed posuere, est at eleifend suscipit, erat ante pretium turpis, eget semper ex risus nec dolor. Etiam pellentesque nulla neque, ut ullamcorper purus facilisis at. Nam imperdiet arcu felis, eu placerat risus dapibus sit amet. Praesent at justo at lectus scelerisque mollis. Mauris molestie mattis tellus ut facilisis. Sed vel ligula ornare, posuere velit ornare, consectetur erat.
+  %footer
+    %a.btn.btn-small.js-modal-close{:href => "#"} Close
