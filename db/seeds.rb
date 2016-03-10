@@ -15,12 +15,11 @@ subscription_details = [
 ]
 
 subscription_plans.each do |plan|
-  SubscriptionPlan.create({name: plan[0], price: plan[1], commission: plan[2], currency: plan[3]})
+  SubscriptionPlan.create({name: plan[0], price: plan[1], commission: plan[2], currency: plan[3], plan_description: ""})
 end
 puts "subscription done"
 
 SubscriptionPlan.all.each_with_index do |plan, index|
- subscription_details.each do |plan_detail|
   detail = subscription_details[index]
   SubscriptionPlanDetail.create(
     :amount_of_ads => detail[0],
@@ -36,7 +35,6 @@ SubscriptionPlan.all.each_with_index do |plan, index|
     :one_Office_365_account => detail[10],
     :subscription_plan_id => plan.id
   )
- end
 end
 puts "subscription plan detail done"
 

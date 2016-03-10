@@ -181,12 +181,28 @@
             = plan.name
           = link_to "Select", "javascript:;", :"data-plan"=> plan.id, :class => "signup plan-select"
           %ul
-            %li
-              Disk Space
-            %li
-              Monthly Bandwidth
-            %li
-              Email Accounts
-            %li
-              subdomains
-        
+            - plan.subscription_plan_details.each do |plan_detail|
+              %li
+                = plan_detail.amount_of_ads
+              %li
+                = plan_detail.company_profile
+              %li
+                = plan_detail.video_tutorials
+              %li
+                = plan_detail.verified_account
+              %li
+                = plan_detail.review_status
+              %li
+                = plan_detail.ad_free_use
+              %li
+                = plan_detail.yearly_national_subscriptions_event
+              %li
+                = plan_detail.access_exclusive_webinars_topspeakers
+              %li
+                = plan_detail.customized_profile
+              %li
+                = plan_detail.rotating_ads_on_homepage
+              %li
+                = plan_detail.one_Office_365_account
+                
+              
