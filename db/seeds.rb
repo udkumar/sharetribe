@@ -8,7 +8,7 @@ subscription_plans = [
   [ "Premium VIP", 99, 1.5, "euro" ]
 ]
 subscription_details = [
-  [ "30", true, true, false, false, false, false, false, false, "", false ],
+  [ "30", true, true, false, false, false, false, false, false, "0", false ],
   [ "75", true, true, true, true, false, false, false, false, "5", false ],
   [ "150", true, true, true, true, true, true, false, false, "10", false ],
   [ "unlimited", true, true, true, true, true, true, true, true, "25", true ]
