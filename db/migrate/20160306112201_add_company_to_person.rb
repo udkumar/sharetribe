@@ -1,5 +1,5 @@
 class AddCompanyToPerson < ActiveRecord::Migration
   def change
-    add_column :people, :string, :company
+    add_column :people, :company, :string
   end
 end
