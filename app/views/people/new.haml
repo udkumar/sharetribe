@@ -8,13 +8,17 @@
 
     var appendthis =  ("<div class='modal-overlay js-modal-close'></div>");
 
-      $('a[data-modal-id]').click(function(e) {
-        e.preventDefault();
-        $("body").append(appendthis);
-        $(".modal-overlay").fadeTo(500, 0.7);
-        //$(".js-modalbox").fadeIn(500);
-        var modalBox = $(this).attr('data-modal-id');
-        $('#'+modalBox).fadeIn($(this).data());
+      $('#subscription_plan').click(function(e) {
+        if($(this).is(':checked')) {
+          $("body").append(appendthis);
+          $(".modal-overlay").fadeTo(500, 0.7);
+          //$(".js-modalbox").fadeIn(500);
+          var modalBox = $(this).attr('data-modal-id');
+          $('#'+modalBox).fadeIn($(this).data());
+        }else {
+          $("#person_subscription_plan_id").val('');
+        }
+        
       });
 
 
@@ -32,6 +36,14 @@
         });
     });
     $(window).resize();
+
+    $(".plan-select").click(function(){
+      $("#person_subscription_plan_id").val($(this).data('plan'));
+      $(".modal-box, .modal-overlay").fadeOut(500, function() {
+            $(".modal-overlay").remove();
+        });
+    });
+
   });
 
 
@@ -104,17 +116,17 @@
     -# Subscription
     .row
       %label.radio-inline.subscription-plan
-        %input.Preemium{:name => "optradio", :type => "radio"}
-          Preemium
-      %label.radio-inline.subscription-plan
-        %input#PremiumBasic{:name => "optradio", :type => "radio"}
-          Premium Basic
-      %label.radio-inline.subscription-plan
-        %input#PremiumPro{:name => "optradio", :type => "radio"}
-          Premium Pro
-      %label.radio-inline.subscription-plan
-        %input#PremiumVIP{:name => "optradio", :type => "radio"}
-          Premium VIP
+        %input.Preemium{:name => "optradio", :type => "checkbox", :id => "subscription_plan", "data-modal-id" => "popup1"}
+          Subscribe
+      / %label.radio-inline.subscription-plan
+      /   %input#PremiumBasic{:name => "optradio", :type => "radio"}
+      /     Premium Basic
+      / %label.radio-inline.subscription-plan
+      /   %input#PremiumPro{:name => "optradio", :type => "radio"}
+      /     Premium Pro
+      / %label.radio-inline.subscription-plan
+      /   %input#PremiumVIP{:name => "optradio", :type => "radio"}
+      /     Premium VIP
     -# Terms
     .outer-checkbox-container
       .checkbox-container
@@ -124,11 +136,12 @@
           = link_to t(".terms"), "#", :tabindex => "-1", :id => "terms_link", :class => "form"
 
     = form.hidden_field :consent, :value => @current_community.consent
+    = form.hidden_field :subscription_plan_id
 
     = button_tag t('.create_new_account')
 
 = render :partial => "help_texts", :collection => ["terms", "help_invitation_code"], :as => :field
-%a.js-open-modal.btn{"data-modal-id" => "popup1", :href => "#"} Pop Up One
+-#%a.js-open-modal.btn{"data-modal-id" => "popup1", :href => "#"} Pop Up One
 #popup1.modal-box{:style => "width:80% !important;margin-top:20%;"}
   %header
     %a.js-modal-close.close{:href => "#"} ×
@@ -162,68 +175,18 @@
             Rotating Ads on Homepage
           %li
             One Office 365 Account
-      / - @subscription_plan.each do |plan|
-      .plan
-        %h3
-          Premium
-        %a.signup{:href => "#{}"} Select
-        %ul
-          %li
-            Disk Space
-          %li
-            Monthly Bandwidth
-          %li
-            Email Accounts
-          %li
-            subdomains
-      .plan
-        %h3
-          Premium Basic
-        %a.signup{:href => ""} Select
-        %ul
-          %li
-            %b 3GB
-            Disk Space
-          %li
-            %b 25GB
-            Monthly Bandwidth
-          %li
-            %b 5
-            Email Accounts
-          %li
-            %b Unlimited
-            subdomains
-      .plan
-        %h3
-          Premium Pro
-        %a.signup{:href => ""} Select
-        %ul
-          %li
-            %b 1GB
-            Disk Space
-          %li
-            %b 10GB
-            Monthly Bandwidth
-          %li
-            %b 2
-            Email Accounts
-          %li
-            %b Unlimited
-            subdomains
-      .plan
-        %h3
-          Premium VIP
-        %a.signup{:href => ""} Select
-        %ul
-          %li
-            %b 1GB
-            Disk Space
-          %li
-            %b 10GB
-            Monthly Bandwidth
-          %li
-            %b 2
-            Email Accounts
-          %li
-            %b Unlimited
-            subdomains
+      - @subscription_plan.each do |plan|
+        .plan
+          %h3
+            = plan.name
+          = link_to "Select", "javascript:;", :"data-plan"=> plan.id, :class => "signup plan-select"
+          %ul
+            %li
+              Disk Space
+            %li
+              Monthly Bandwidth
+            %li
+              Email Accounts
+            %li
+              subdomains
+        
