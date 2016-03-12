@@ -14,6 +14,6 @@
 
 class SubscriptionPlan < ActiveRecord::Base
 
-  belongs_to :user
+  has_one :people, :dependent => :destroy
   has_many :subscription_plan_details
 end

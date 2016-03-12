@@ -36,6 +36,7 @@
         %tr
           %th= render partial: "layouts/sort_link", locals: { column: "name", direction: sort_link_direction("name"), title: t("admin.communities.manage_members.name") }
           %th= render partial: "layouts/sort_link", locals: { column: "email", direction: sort_link_direction("email"), title: t("admin.communities.manage_members.email") }
+          %th= render partial: "layouts/sort_link", locals: { column: "plan", direction: sort_link_direction("plan"), title: t("admin.communities.manage_members.subscription_plan") }
           %th= render partial: "layouts/sort_link", locals: { column: "join_date", direction: sort_link_direction("join_date"), title: t("admin.communities.manage_members.join_date") }
           - if @current_community.require_verification_to_post_listings
             %th{:style => "text-align: center"}= render partial: "layouts/sort_link", locals: { column: "posting_allowed", direction: sort_link_direction("posting_allowed"), title: t("admin.communities.manage_members.posting_allowed") }
@@ -50,6 +51,8 @@
                 = link_to member.full_name, member
               %td
                 = mail_to member.confirmed_notification_email_addresses.first
+              %td
+                = member.subscription_plan.try(:name)
               %td= l(membership.created_at, :format => :short_date)
               - if @current_community.require_verification_to_post_listings
                 %td{:style => "text-align: center"}= check_box_tag "posting-allowed[#{member.id}]", member.id, membership.can_post_listings, :class => "admin-members-can-post-listings"
