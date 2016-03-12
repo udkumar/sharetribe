@@ -47,6 +47,18 @@
   position: relative;
 }
 
+#pricing-table .plan1 {
+  font: 12px 'Lucida Sans', 'trebuchet MS', Arial, Helvetica;
+  text-shadow: 0 1px rgba(255,255,255,.8);
+  background: #fff;
+  border: 1px solid #ddd;
+  color: #333;
+  padding: 20px;
+  width: 254px; /* plan width = 180 + 20 + 20 + 1 + 1 = 222px */
+  float: left;
+  position: relative;
+}
+
 #pricing-table #most-popular {
   z-index: 2;
   top: -13px;
@@ -66,7 +78,19 @@
   border-radius: 5px 0 0 5px;
 }
 
+#pricing-table .plan1:nth-child(1) {
+  -moz-border-radius: 5px 0 0 5px;
+  -webkit-border-radius: 5px 0 0 5px;
+  border-radius: 5px 0 0 5px;
+}
+
 #pricing-table .plan:nth-child(4) {
+  -moz-border-radius: 0 5px 5px 0;
+  -webkit-border-radius: 0 5px 5px 0;
+  border-radius: 0 5px 5px 0;
+}
+
+#pricing-table .plan1:nth-child(4) {
   -moz-border-radius: 0 5px 5px 0;
   -webkit-border-radius: 0 5px 5px 0;
   border-radius: 0 5px 5px 0;
@@ -109,7 +133,19 @@
   border-radius: 5px 0 0 0;
 }
 
+#pricing-table .plan1:nth-child(1) h3 {
+  -moz-border-radius: 5px 0 0 0;
+  -webkit-border-radius: 5px 0 0 0;
+  border-radius: 5px 0 0 0;
+}
+
 #pricing-table .plan:nth-child(4) h3 {
+  -moz-border-radius: 0 5px 0 0;
+  -webkit-border-radius: 0 5px 0 0;
+  border-radius: 0 5px 0 0;
+}
+
+#pricing-table .plan1:nth-child(4) h3 {
   -moz-border-radius: 0 5px 0 0;
   -webkit-border-radius: 0 5px 0 0;
   border-radius: 0 5px 0 0;
@@ -143,6 +179,11 @@
 #pricing-table li {
   border-top: 1px solid #ddd;
   padding: 6px 0;
+
+}
+
+#pricing-table li > img {
+  height: 10px;
 }
 
 /* --------------- */

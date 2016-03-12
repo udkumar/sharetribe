@@ -20,43 +20,32 @@
         }
 
         $(".plan > ul > li").each(function(){
-          var plan_v = $(this).text();
-          if(plan_v == "true"){
-
-          }
-          if(plan_v == "false"){
-
-          }
+          var plan_v = $(this)
 
         });
-
       });
 
 
     $(".js-modal-close, .modal-overlay").click(function() {
-        $(".modal-box, .modal-overlay").fadeOut(500, function() {
-            $(".modal-overlay").remove();
-        });
-
+      $(".modal-box, .modal-overlay").fadeOut(500, function() {
+        $(".modal-overlay").remove();
+      });
     });
 
     $(window).resize(function() {
-        $(".modal-box").css({
-            top: ($(window).height() - $(".modal-box").outerHeight()) / 2,
-            left: ($(window).width() - $(".modal-box").outerWidth()) / 2
-        });
+      $(".modal-box").css({
+        top: ($(window).height() - $(".modal-box").outerHeight()) / 2,
+        left: ($(window).width() - $(".modal-box").outerWidth()) / 2
+      });
     });
     $(window).resize();
 
     $(".plan-select").click(function(){
       $("#person_subscription_plan_id").val($(this).data('plan'));
       $(".modal-box, .modal-overlay").fadeOut(500, function() {
-            $(".modal-overlay").remove();
-        });
+        $(".modal-overlay").remove();
+      });
     });
-
-
-
   });
 
 
@@ -161,7 +150,7 @@
     %h3 EURObizz B2B Marketplace Subscription
   .modal-body
     #pricing-table.clear
-      .plan
+      .plan1
         %h3
           Subscription
         %a.signup-header Plan Includes
@@ -198,24 +187,51 @@
               %li
                 = plan_detail.amount_of_ads
               %li
-                = plan_detail.company_profile
+                - if plan_detail.company_profile == true
+                  = image_tag "subscribe_true.png"
+                - else
+                  = image_tag "subscribe_false.png"
               %li
-                = plan_detail.video_tutorials
+                - if plan_detail.video_tutorials == true
+                  = image_tag "subscribe_true.png"
+                - else
+                  = image_tag "subscribe_false.png"
               %li
-                = plan_detail.verified_account
+                - if plan_detail.verified_account == true
+                  = image_tag "subscribe_true.png"
+                - else
+                  = image_tag "subscribe_false.png"
               %li
-                = plan_detail.review_status
+                - if plan_detail.review_status == true
+                  = image_tag "subscribe_true.png"
+                - else
+                  = image_tag "subscribe_false.png"
               %li
-                = plan_detail.ad_free_use
+                - if plan_detail.ad_free_use == true
+                  = image_tag "subscribe_true.png"
+                - else
+                  = image_tag "subscribe_false.png"
               %li
-                = plan_detail.yearly_national_subscriptions_event
+                - if plan_detail.yearly_national_subscriptions_event == true
+                  = image_tag "subscribe_true.png"
+                - else
+                  = image_tag "subscribe_false.png"
               %li
-                = plan_detail.access_exclusive_webinars_topspeakers
+                - if plan_detail.access_exclusive_webinars_topspeakers == true
+                  = image_tag "subscribe_true.png"
+                - else
+                  = image_tag "subscribe_false.png"
               %li
-                = plan_detail.customized_profile
+                -if plan_detail.customized_profile == true
+                  = image_tag "subscribe_true.png"
+                - else
+                  = image_tag "subscribe_false.png"
               %li
                 = plan_detail.rotating_ads_on_homepage
               %li
-                = plan_detail.one_Office_365_account
+                - if plan_detail.one_Office_365_account == true
+                  = image_tag "subscribe_true.png"
+                - else
+                  = image_tag "subscribe_false.png"
 
 
