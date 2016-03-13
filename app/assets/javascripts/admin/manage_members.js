@@ -39,8 +39,10 @@ window.ST.initializeManageMembers = function() {
     return ajaxRequest;
   }
 
+
   var postingAllowed = createCheckboxAjaxRequest(".admin-members-can-post-listings", "posting_allowed", "allowed_to_post", "disallowed_to_post");
   var isAdmin = createCheckboxAjaxRequest(".admin-members-is-admin", "promote_admin", "add_admin", "remove_admin");
+  //var isPaid = createCheckboxAjaxRequest(".admin-members-is-paid", "subscription_update", "add_admin", "");
 
   var ajaxRequest = postingAllowed.merge(isAdmin);
   var ajaxResponse = ajaxRequest.ajax().endOnError();
@@ -72,5 +74,35 @@ window.ST.initializeManageMembers = function() {
   $(".js-users-csv-export").click(function(){
     /* global report_analytics_event */
     report_analytics_event('admin', 'export', 'users');
+  });
+
+  $('.admin-members-is-paid').click(function(){
+    // alert(ST.utils.relativeUrl('subscription_update'));
+    if($(this).is(':checked')){
+      ajaxRequest = $.ajax({
+        type: "POST",
+        url: ST.utils.relativeUrl('subscription_update'),
+        data: "people_id="+$(this).val(),
+        beforeSend: function(data){
+          $(".ajax-update-notification").show();
+          $("#admin-members-saving-posting-allowed").show();
+          $("#admin-members-error-posting-allowed").hide();
+          $("#admin-members-saved-posting-allowed").hide();
+        },
+        success: function(data){
+          $("#admin-members-saving-posting-allowed").hide();
+          $("#admin-members-saved-posting-allowed").show();
+
+        },
+        error: function(data){
+          $("#admin-members-saving-posting-allowed").hide();
+          $("#admin-members-error-posting-allowed").show();
+        },
+        complete: function(data){
+          $(".ajax-update-notification").fadeOut();
+        }
+
+      });
+    };
   });
 };

@@ -70,6 +70,15 @@ class Admin::CommunityMembershipsController < ApplicationController
     render nothing: true, status: 200
   end
 
+  def subscription_update
+    @person = Person.find(params[:people_id])
+    if @person.update_attributes(is_paid: true)
+      render nothing: true, status: 200
+    else
+      render nothing: true, status: 405
+    end
+  end
+
   private
 
   def generate_csv_for(yielder, memberships, community)

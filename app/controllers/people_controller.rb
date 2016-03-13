@@ -153,6 +153,7 @@ class PeopleController < Devise::RegistrationsController
 
       redirect_to root
     else
+      raise :confirm.inspect
       Email.send_confirmation(email, @current_community)
 
       flash[:notice] = t("layouts.notifications.account_creation_succesful_you_still_need_to_confirm_your_email")

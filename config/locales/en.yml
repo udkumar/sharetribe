@@ -257,7 +257,8 @@ en:
         manage_members: "Manage users"
         email: Email
         name: Name
-        subscription_plan: "Subscription Plan"  
+        subscription_plan: "Subscription Plan"
+        is_paid: Paid
         join_date: Joined
         admin: Admin
         posting_allowed: "Posting allowed"
