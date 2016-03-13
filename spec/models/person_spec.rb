@@ -44,6 +44,7 @@
 #  company                            :string(255)
 #  subscription_plan_id               :integer
 #  is_paid                            :boolean
+#  payment_status                     :string(255)      default("pending"), not null
 #
 # Indexes
 #

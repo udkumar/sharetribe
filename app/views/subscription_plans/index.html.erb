@@ -1,0 +1,5 @@
+<p><%= @subscription_plan.name %></p>
+<p><%= @subscription_plan.price %></p>
+<p><%= @current_user.payment_status %></p>
+<%= link_to "Payment Status", subscription_plan_update_path, class: "new-listing-link" %>
+

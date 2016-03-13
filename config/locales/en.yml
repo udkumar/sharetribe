@@ -259,6 +259,7 @@ en:
         name: Name
         subscription_plan: "Subscription Plan"
         is_paid: Paid
+        payment_status: Payment
         join_date: Joined
         admin: Admin
         posting_allowed: "Posting allowed"

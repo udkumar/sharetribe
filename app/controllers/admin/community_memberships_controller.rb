@@ -72,7 +72,7 @@ class Admin::CommunityMembershipsController < ApplicationController
 
   def subscription_update
     @person = Person.find(params[:people_id])
-    if @person.update_attributes(is_paid: true)
+    if @person.update_attributes(is_paid: true, payment_status: "paid")
       render nothing: true, status: 200
     else
       render nothing: true, status: 405

@@ -1,5 +1,8 @@
 Kassi::Application.routes.draw do
 
+  get "/subscription_plan" => "subscription_plans#index"
+  get "/subscription_plan_update" => "subscription_plans#update_payment"
+
   namespace :mercury do
     resources :images
   end
